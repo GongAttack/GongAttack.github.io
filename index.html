@@ -198,7 +198,7 @@
   
     <h1 itemprop="name">
 	
-	  <a class="article-title" href="/2021/07/12/wjgl/" target="_blank">文件管理</a>
+	  <a class="article-title" href="/2021/07/12/wjgl/" target="_blank">Linux文件管理</a>
   
     </h1>
   
@@ -222,7 +222,7 @@
     <p>Windows和Linux组织文件区别</p>
 <p>Windows： 以多根的方式组织文件 C:\ D:\ E:\</p>
 <p>Linux: 以单根的方式组织文件 /</p>
-<h1 id="目录结构FSH-Filesystem-Hierarchy"><a href="#目录结构FSH-Filesystem-Hierarchy" class="headerlink" title="目录结构FSH(Filesystem Hierarchy"></a>目录结构FSH(Filesystem Hierarchy</h1><h1 id="Standard"><a href="#Standard" class="headerlink" title="Standard)"></a>Standard)</h1><p><img src="img/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%861.png" alt="image-20210712142437351"></p>
+<h1 id="目录结构FSH-Filesystem-Hierarchy"><a href="#目录结构FSH-Filesystem-Hierarchy" class="headerlink" title="目录结构FSH(Filesystem Hierarchy"></a>目录结构FSH(Filesystem Hierarchy</h1><h1 id="Standard"><a href="#Standard" class="headerlink" title="Standard)"></a>Standard)</h1><p><img src="img/wjgl1.png" alt="image-20210712142437351"></p>
 <table>
 <thead>
 <tr>
@@ -311,7 +311,7 @@
 <td>手工挂载设备的挂载点</td>
 </tr>
 </tbody></table>
-<h1 id="文件定位-路径"><a href="#文件定位-路径" class="headerlink" title="文件定位 路径"></a>文件定位 路径</h1><h5 id="路径的作用：定位文件"><a href="#路径的作用：定位文件" class="headerlink" title="路径的作用：定位文件"></a>路径的作用：定位文件</h5><h5 id="你要在哪儿创建文件？"><a href="#你要在哪儿创建文件？" class="headerlink" title="你要在哪儿创建文件？"></a>你要在哪儿创建文件？</h5><h5 id="你要将什么文件复制到什么地方？"><a href="#你要将什么文件复制到什么地方？" class="headerlink" title="你要将什么文件复制到什么地方？"></a>你要将什么文件复制到什么地方？</h5><h5 id="你要删除什么地方的什么文件？"><a href="#你要删除什么地方的什么文件？" class="headerlink" title="你要删除什么地方的什么文件？"></a>你要删除什么地方的什么文件？</h5><p><img src="img/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%862.png" alt="image-20210712145958999"></p>
+<h1 id="文件定位-路径"><a href="#文件定位-路径" class="headerlink" title="文件定位 路径"></a>文件定位 路径</h1><h5 id="路径的作用：定位文件"><a href="#路径的作用：定位文件" class="headerlink" title="路径的作用：定位文件"></a>路径的作用：定位文件</h5><h5 id="你要在哪儿创建文件？"><a href="#你要在哪儿创建文件？" class="headerlink" title="你要在哪儿创建文件？"></a>你要在哪儿创建文件？</h5><h5 id="你要将什么文件复制到什么地方？"><a href="#你要将什么文件复制到什么地方？" class="headerlink" title="你要将什么文件复制到什么地方？"></a>你要将什么文件复制到什么地方？</h5><h5 id="你要删除什么地方的什么文件？"><a href="#你要删除什么地方的什么文件？" class="headerlink" title="你要删除什么地方的什么文件？"></a>你要删除什么地方的什么文件？</h5><p><img src="img/wjgl2.png" alt="image-20210712145958999"></p>
 <p>绝对路径：从/开始的路径 /home/aaron/file</p>
 <p>相对路径：从当前路径开始 a.txt ./a.txt ../a.txt</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@xwz /]# useradd aaron</span><br><span class="line">[root@xwz /]# touch /home/aaron/file1 # 绝对路径</span><br><span class="line">[root@xwz /]# touch ~/file</span><br><span class="line">[root@xwz /]# touch ~aaron/file</span><br></pre></td></tr></table></figure>
@@ -367,7 +367,7 @@ windows^M$</code></pre><p>less more head tail tailf</p>
 <p>文件编辑器 gedit</p>
 <p>文件编辑器 vi, vim, nano</p>
 <p>vi编辑器工作模式</p>
-<p><img src="img/%E6%96%87%E4%BB%B6%E7%AE%A1%E7%90%863.png" alt="image-20210712151212144"></p>
+<p><img src="img/wjgl3.png" alt="image-20210712151212144"></p>
 <h2 id="命令模式"><a href="#命令模式" class="headerlink" title="命令模式"></a>命令模式</h2><h3 id="光标跳转"><a href="#光标跳转" class="headerlink" title="光标跳转"></a>光标跳转</h3><ul>
 <li><h4 id="上下左右"><a href="#上下左右" class="headerlink" title="上下左右"></a>上下左右</h4></li>
 </ul>
@@ -578,20 +578,13 @@ windows^M$</code></pre><p>less more head tail tailf</p>
 <p><img src="img/shell.png" alt="image-shell"></p>
 <p>我们可以使用shell实现对Linux系统单的大部分管理，例如：</p>
 <ol>
-<li><p>文件管理</p>
-</li>
-<li><p>用户管理</p>
-</li>
-<li><p>权限管理</p>
-</li>
-<li><p>磁盘管理</p>
-</li>
-<li><p>软件管理</p>
-</li>
-<li><p>网络管理</p>
-</li>
-<li><p>….</p>
-</li>
+<li>文件管理</li>
+<li>用户管理</li>
+<li>权限管理</li>
+<li>磁盘管理</li>
+<li>软件管理</li>
+<li>网络管理</li>
+<li>…</li>
 </ol>
 <p>使用shell的两种方式</p>
 <p>输入命令 效率低        适合少量的工作</p>
