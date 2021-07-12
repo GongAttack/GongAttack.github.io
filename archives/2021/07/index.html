@@ -6,17 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>gong</title>
+  <title>Archives: 2021/7 | gong</title>
   <meta name="generator" content="hexo-theme-yilia-plus">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
-    
-    <!-- <meta name="keywords" content="">
-    <meta name="description" content=""> -->
-  
   <meta property="og:type" content="website">
 <meta property="og:title" content="gong">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta property="og:url" content="http://yoursite.com/archives/2021/07/index.html">
 <meta property="og:site_name" content="gong">
 <meta property="og:locale" content="en">
 <meta name="twitter:card" content="summary">
@@ -188,329 +184,45 @@
           </div>
           <div id="js-content" class="content-ll">
             
-
   
-    <article id="post-Linux初识" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-  <div class="article-entry" itemprop="articleBody">
-    
-    <h1 id="Linux初识"><a href="#Linux初识" class="headerlink" title="Linux初识"></a>Linux初识</h1><h2 id="Linux名词"><a href="#Linux名词" class="headerlink" title="Linux名词"></a>Linux名词</h2><ul>
-<li><p>Linux系统内核指的是一个由Linus Torvalds负责维护，提供硬件抽象层、硬盘及文件系统控制及多任务功能的系统核心程序。</p>
-</li>
-<li><p>Linux发行套件系统是我们常说的Linux操作系统，也即是由Linux内核与各种常用软件的集合产品。</p>
-</li>
-</ul>
-<h2 id="初识shell"><a href="#初识shell" class="headerlink" title="初识shell"></a>初识shell</h2><p>shell是系统的<strong>用户界面</strong> ,提供了用户与内核进行交互操作的一种接口。它接收用户输入的命令并把它送入内核去执行。实际上shell是一个<strong>命令解释器</strong>，它解释用户输入的命令并且把用户的意图传达给内核。（可以理解为用户与内核之间的翻译官角色）</p>
-<p><img src="C:%5CUsers%5CGong%5CAppData%5CRoaming%5CTypora%5Ctypora-user-images%5Cimage-20210712132239763.png" alt="image-20210712132239763"></p>
-<p>我们可以使用shell实现对Linux系统单的大部分管理，例如：</p>
-<ol>
-<li><p>文件管理</p>
-</li>
-<li><p>用户管理</p>
-</li>
-<li><p>权限管理</p>
-</li>
-<li><p>磁盘管理</p>
-</li>
-<li><p>软件管理</p>
-</li>
-<li><p>网络管理</p>
-</li>
-<li><p>….</p>
-</li>
-</ol>
-<p>使用shell的两种方式</p>
-<p>输入命令 效率低        适合少量的工作</p>
-<p>shell script 效率高    适合完成复杂，重复性工作</p>
-<h2 id="bash-shell提示符"><a href="#bash-shell提示符" class="headerlink" title="bash shell提示符"></a>bash shell提示符</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[root@192 ~]# echo $PS1</span><br><span class="line">[\u@\h \W]\$</span><br><span class="line"></span><br><span class="line">[root@192 ~]# date </span><br><span class="line">2021年 07月 12日 星期一 13:28:10 CST</span><br><span class="line"></span><br><span class="line">[root@192 ~]# whoami</span><br><span class="line">root</span><br><span class="line"></span><br><span class="line">[root@192 ~]# useradd zhangsan</span><br><span class="line">[root@192 ~]# passwd zhangsan</span><br><span class="line">更改用户 zhangsan 的密码 </span><br><span class="line">新的 密码： </span><br><span class="line">重新输入新的 密码： </span><br><span class="line">passwd：所有的身份验证令牌已经成功更新。</span><br></pre></td></tr></table></figure>
-
-<h2 id="shell语法"><a href="#shell语法" class="headerlink" title="shell语法"></a>shell语法</h2><p>命令    选项    参数</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@192 ~]# ls</span><br><span class="line">anaconda-ks.cfg</span><br><span class="line"></span><br><span class="line">[root@192 ~]# ls -a</span><br><span class="line">.  ..  anaconda-ks.cfg  .bash_logout  .bash_profile  .bashrc  .cshrc  .tcshrc</span><br><span class="line"></span><br><span class="line">[root@192 ~]# ls -a /home</span><br><span class="line">.  ..  zhangsan</span><br></pre></td></tr></table></figure>
-
-<p>命令：整条shell命令的主体</p>
-<p>选项：会影响会微调命令的行为，通常以-或者–开头</p>
-<p>参数：命令作用的对象（长参数、短参数）</p>
-<h2 id="bash基本特性"><a href="#bash基本特性" class="headerlink" title="bash基本特性"></a>bash基本特性</h2><h3 id="自动补全"><a href="#自动补全" class="headerlink" title="自动补全"></a>自动补全</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@xwz ~]# ls /etc/sysconfig/network-scripts/ </span><br><span class="line">[root@xwz ~]# ls /etc/sysconfig/network-scripts/ifcfg-ens33 </span><br><span class="line">[root@xwz ~]# cat /etc/sysconfig/network-scripts/ifcfg-ens33 </span><br><span class="line">[root@xwz ~]# systemctl restart crond.service </span><br><span class="line">[root@xwz ~]# date -s 12:30</span><br></pre></td></tr></table></figure>
-
-<h3 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h3><table>
-<thead>
-<tr>
-<th align="left">快捷键</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">^C</td>
-<td>终止前台运行的程序</td>
-</tr>
-<tr>
-<td align="left">^D</td>
-<td>退出 等价exit</td>
-</tr>
-<tr>
-<td align="left">^L</td>
-<td>清屏</td>
-</tr>
-<tr>
-<td align="left">^A</td>
-<td>光标移动到命令行的最前端</td>
-</tr>
-<tr>
-<td align="left">^E</td>
-<td>光标移动到命令行的后端</td>
-</tr>
-<tr>
-<td align="left">^U</td>
-<td>删除光标前所有字符</td>
-</tr>
-<tr>
-<td align="left">^K</td>
-<td>删除光标后所有字符</td>
-</tr>
-<tr>
-<td align="left">^R</td>
-<td>搜索历史命令，利用关键词</td>
-</tr>
-</tbody></table>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@xwz ~]# ls /etc/sysconfig/network-scripts/ifcfg-ens33 /etc/sysconfig/network-scripts/ifcfg-ens33 </span><br><span class="line">[root@xwz ~]# cat [ESC.]</span><br></pre></td></tr></table></figure>
-
-<h3 id="历史别名"><a href="#历史别名" class="headerlink" title="历史别名"></a>历史别名</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@xwz ~]# history</span><br></pre></td></tr></table></figure>
-
-<p>查看命令历史：history 命令历史文件：~/.bash_history 登录shell时会读取命令历史文件，并将后续操</p>
-<p>作命令添加到历史配置文件中</p>
-<ul>
-<li><p>‐ a : 追加本次会话执行的命令历史列表至历史文件中</p>
-</li>
-<li><p>‐ d ：删除历史中指定的命令</p>
-</li>
-<li><p>‐ c : 清空历史命令</p>
-</li>
-</ul>
-<ol>
-<li><p>光标上下键</p>
-</li>
-<li><p>^R</p>
-<ol>
-<li>搜索历史命令（输入一段某条命令的关键字:必须是连续的）</li>
-</ol>
-</li>
-<li><p>!220</p>
-<ol>
-<li>执行历史命令中第220条命令</li>
-</ol>
-</li>
-<li><p>!字符串</p>
-<ol>
-<li>搜索历史命令中最近一个以xxxx字符开头的命令，例如!ser</li>
-</ol>
-</li>
-<li><p>!$</p>
-<ol>
-<li>引用上一个命令的<strong>最后一个参数</strong> ，当上一个命令没有参数的时候，!$代表的是上一个命令本</li>
-</ol>
-</li>
-</ol>
-<p>身</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@xwz ~]# ls /root/home</span><br><span class="line">[root@xwz ~]# cd !$</span><br><span class="line">[root@xwz ~]# ls /root/home</span><br><span class="line">ls: 无法访问/root/home: 没有那个文件或目录</span><br><span class="line">[root@xwz ~]# mkdir !$</span><br><span class="line">mkdir /root/home</span><br><span class="line">[root@xwz ~]# touch !$/file</span><br><span class="line">touch /root/home/file1</span><br><span class="line">[root@xwz ~]# systemctl restart crond </span><br><span class="line">[root@xwz ~]# ls </span><br><span class="line">anaconda-ks.cfg home </span><br><span class="line">[root@xwz ~]# date </span><br><span class="line">2019年 08月 21日 星期三 12:16:23 CST </span><br><span class="line">[root@xwz ~]# !sy systemctl restart crond</span><br></pre></td></tr></table></figure>
-
-<h3 id="命令别名"><a href="#命令别名" class="headerlink" title="命令别名"></a>命令别名</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">[root@xwz ~]# alias wl='cat /etc/sysconfig/network-scripts/ifcfg-ens33'</span><br><span class="line"><span class="meta">#</span> 建立别名(临时的，仅在当前shell生效)</span><br><span class="line">[root@xwz ~]# wl</span><br><span class="line">TYPE="Ethernet"</span><br><span class="line">PROXY_METHOD="none"</span><br><span class="line">BROWSER_ONLY="no"</span><br><span class="line">BOOTPROTO="dhcp"</span><br><span class="line">DEFROUTE="yes"</span><br><span class="line">IPV4_FAILURE_FATAL="no"</span><br><span class="line">IPV6INIT="yes"</span><br><span class="line">IPV6_AUTOCONF="yes"</span><br><span class="line">IPV6_DEFROUTE="yes"</span><br><span class="line">IPV6_FAILURE_FATAL="no"</span><br><span class="line">IPV6_ADDR_GEN_MODE="stable-privacy"</span><br><span class="line">NAME="ens33"</span><br><span class="line">UUID="1864a917-1e72-452d-a4c8-0c0d7e6757b0"</span><br><span class="line">DEVICE="ens33"</span><br><span class="line">ONBOOT="yes"</span><br><span class="line">[root@xwz ~]# unalias wl</span><br><span class="line"><span class="meta">#</span> 取消wl这个别名</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[root@xwz ~]# alias # 查看系统当前的别名</span><br><span class="line">alias cp='cp -i'</span><br><span class="line">alias egrep='egrep --color=auto'</span><br><span class="line">alias fgrep='fgrep --color=auto'</span><br><span class="line">alias grep='grep --color=auto'</span><br><span class="line">alias l.='ls -d .* --color=auto'</span><br><span class="line">alias ll='ls -l --color=auto'</span><br><span class="line">alias ls='ls --color=auto'</span><br><span class="line">alias mv='mv -i'</span><br><span class="line">alias rm='rm -i'</span><br><span class="line">alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-</span><br><span class="line">tilde'</span><br><span class="line">[root@xwz ~]# ll</span><br><span class="line">总用量 4</span><br><span class="line">-rw-------. 1 root root 1241 8 月  22 2018 anaconda-ks.cfg</span><br><span class="line">drwxr-xr-x. 2 root root 19 8 月  21 12 :15 home</span><br><span class="line">[root@xwz ~]# type -a ls # 查看命令类型</span><br><span class="line">ls 是 `ls --color=auto' 的别名</span><br><span class="line">ls 是 /usr/bin/ls</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@xwz ~]# /bin/ls</span><br><span class="line">anaconda-ks.cfg home</span><br><span class="line">[root@xwz ~]# ls # 别名优先</span><br><span class="line">anaconda-ks.cfg home</span><br><span class="line">[root@xwz ~]# \ls # 跳过别名</span><br><span class="line">anaconda-ks.cfg home</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@xwz ~]# cp -rf /etc /tmp # 第一次</span><br><span class="line">[root@xwz ~]# cp -rf /etc /tmp # 第二次</span><br><span class="line">cp：是否覆盖"/tmp/etc/fstab"？</span><br><span class="line">[root@xwz ~]# \cp -rf /etc /tmp</span><br></pre></td></tr></table></figure>
-
-<p>永久别名</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@xwz ~]# vi /etc/bashrc # 添加如下行</span><br><span class="line">alias wl='cat /etc/sysconfig/network-scripts/ifcfg-ens33'</span><br></pre></td></tr></table></figure>
-
-<h2 id="Linux获得帮助"><a href="#Linux获得帮助" class="headerlink" title="Linux获得帮助"></a>Linux获得帮助</h2><h3 id="命令——help"><a href="#命令——help" class="headerlink" title="命令——help"></a>命令——help</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@xwz ~]# ls --help </span><br><span class="line"><span class="meta">#</span>用法：ls [选项] ... [文件] ...</span><br></pre></td></tr></table></figure>
-
-<p>ls常见选项</p>
-<table>
-<thead>
-<tr>
-<th>命令</th>
-<th>作用</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>-a</td>
-<td>all,查看目录下的所有文件，包括隐藏文件</td>
-</tr>
-<tr>
-<td>-l</td>
-<td>长列表显示</td>
-</tr>
-<tr>
-<td>-h</td>
-<td>human以人性化方式显示出来</td>
-</tr>
-<tr>
-<td>-d</td>
-<td>只列出目录名，不列出其他内容</td>
-</tr>
-<tr>
-<td>-t</td>
-<td>按修改时间排序</td>
-</tr>
-<tr>
-<td>-S</td>
-<td>按文件的Size排除</td>
-</tr>
-<tr>
-<td>-r</td>
-<td>逆序排列reverse</td>
-</tr>
-<tr>
-<td>-l</td>
-<td>显示文件的inode号(索引号)</td>
-</tr>
-</tbody></table>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">[root@xwz ~]# date --help</span><br><span class="line">[root@xwz ~]# date</span><br><span class="line">[root@xwz ~]# date +%H</span><br><span class="line">[root@xwz ~]# date +%F</span><br><span class="line">[root@xwz ~]# date 0214232131</span><br><span class="line">[root@xwz ~]# date 0214232131.</span><br></pre></td></tr></table></figure>
-
-<h2 id="man手册名-针对命令帮助，针对配置文件帮助，针对函数"><a href="#man手册名-针对命令帮助，针对配置文件帮助，针对函数" class="headerlink" title="man手册名(针对命令帮助，针对配置文件帮助，针对函数"></a>man手册名(针对命令帮助，针对配置文件帮助，针对函数</h2><h2 id="帮助"><a href="#帮助" class="headerlink" title="帮助)"></a>帮助)</h2><h2 id="中文man手册"><a href="#中文man手册" class="headerlink" title="中文man手册"></a>中文man手册</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum -y install man-pages-zh-CN.noarch</span><br><span class="line">echo "alias cman='man -M /usr/share/man/zh_CN'" &gt;&gt; .bashrc</span><br><span class="line">source .bashrc</span><br></pre></td></tr></table></figure>
-
-<h3 id="技巧1：按章节查询"><a href="#技巧1：按章节查询" class="headerlink" title="技巧1：按章节查询"></a>技巧1：按章节查询</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[root@xwz ~]# /usr/bin/passwd # 修改用户口令命令</span><br><span class="line">[root@xwz ~]# /etc/passwd # 包含用户信息的配置文件</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@xwz ~]# man -f passwd</span><br><span class="line">sslpasswd (1ssl) - compute password hashes</span><br><span class="line">passwd (1) - update user's authentication tokens</span><br><span class="line">[root@xwz ~]# man 1 passwd</span><br><span class="line">[root@xwz ~]# man 5 passwd</span><br></pre></td></tr></table></figure>
-
-<h3 id="技巧-2-：在所有章节中查询"><a href="#技巧-2-：在所有章节中查询" class="headerlink" title="技巧 2 ：在所有章节中查询"></a>技巧 2 ：在所有章节中查询</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@xwz ~]# man -a passwd</span><br></pre></td></tr></table></figure>
-
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
+  
     
     
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2021/07/12/Linux初识/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2021" class="archive-year">2021</a>
         </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-hello-world" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+        <div class="archives">
     
-      <header class="article-header">
-  
-  
-    <h1 itemprop="name">
-	
-	  <a class="article-title" href="/2020/07/11/hello-world/" target="_blank">Hello World</a>
-  
-    </h1>
-  
-
-
-  
-  
-<a href="/2020/07/11/hello-world/" class="archive-article-date">
-        <time datetime="2020-07-11T14:45:03.291Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2020-07-11</time>
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	
+<a href="/2021/07/12/Linux初识/" class="archive-article-date">
+        <time datetime="2021-07-12T06:16:49.538Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-07-12</time>
 </a>
 
-  
-  
-    
+        </div>
+    	 
 
-  
-  </header>
-  
-  <div class="article-entry" itemprop="articleBody">
-    
-    <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+        <div class="article-info info-on-right">
+          
+          
 
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
-    
-
-    
-
-    
-
-  </div>
-  <div class="article-info article-info-index">
-    
-    
-    
-
-    
-    <p class="article-more-link">
-      <a class="article-more-a" href="/2020/07/11/hello-world/">展开全文 >></a>
-    </p>
-    
-
-    
-    <div class="clearfix"></div>
-  </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
   
+    </div></section>
+  
+
+    
 
 
           </div>
@@ -550,9 +262,9 @@
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
-		isArchive: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: true,
