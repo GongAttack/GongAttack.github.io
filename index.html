@@ -172,6 +172,144 @@
             
 
   
+    <article id="post-Linux文本三剑客" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+  
+  
+    <h1 itemprop="name">
+	
+	  <a class="article-title" href="/2022/05/06/Linux文本三剑客/" target="_blank">Linux文本三剑客</a>
+  
+    </h1>
+  
+
+
+  
+  
+<a href="/2022/05/06/Linux文本三剑客/" class="archive-article-date">
+        <time datetime="2022-05-06T14:23:06.917Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2022-05-06</time>
+</a>
+
+  
+  
+    
+
+  
+  </header>
+  
+  <div class="article-entry" itemprop="articleBody">
+    
+    <h2 id="Linux文本三剑客"><a href="#Linux文本三剑客" class="headerlink" title="Linux文本三剑客"></a>Linux文本三剑客</h2><h3 id="Linux文本三剑客-1"><a href="#Linux文本三剑客-1" class="headerlink" title="Linux文本三剑客"></a>Linux文本三剑客</h3><ul>
+<li>grep: 文本过滤 (模式： pattern) 工具 (egrep)</li>
+<li>sed: stream editor, 文本编辑工具</li>
+<li>awk：Linux上实现gawk, 文本报告生成器</li>
+</ul>
+<p>grep</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">## 常用选项:</span><br><span class="line">- - color=auto：对匹配到的文本着色显示</span><br><span class="line">-v：显示不能够被pattern匹配到的行</span><br><span class="line">-i: 忽略大小写字符</span><br><span class="line">−o : 仅显示匹配到的字符串</span><br><span class="line">−q ：静默模式, 不输出任何信息</span><br><span class="line">-A #：after, 后#行</span><br><span class="line">-B #：before，前#行</span><br><span class="line">-C #: context，前后各#行</span><br><span class="line">−E ：使用ERE 等同于 egrep</span><br></pre></td></tr></table></figure>
+
+<h3 id="grep练习题"><a href="#grep练习题" class="headerlink" title="grep练习题"></a>grep练习题</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">1.显示/proc/meminfo文件中以大小s开头的行（2种方式）</span><br><span class="line">grep -i&apos;^s&apos; /PATH</span><br><span class="line">grep &apos; A[SS]′/ PATH</span><br><span class="line"></span><br><span class="line">2.显示/etc/passwd文件中不以/bin/bash结尾的行</span><br><span class="line">grep -v&apos;/bin/bash$&apos;</span><br><span class="line"></span><br><span class="line">3.如果root用户存在，显示其默认的shell程序</span><br><span class="line">id root &amp; /dev/null &amp;&amp; grep &quot;^root ∖&gt;&quot; /etc/passwd | cut −d : −f7</span><br><span class="line"></span><br><span class="line">4.找出/etc/passwd中的两位或三位数</span><br><span class="line"></span><br><span class="line">grep &quot;&lt;[0-9] ∖&#123;2,3∖&#125;∖&gt;&quot; /etc/passwd</span><br><span class="line"></span><br><span class="line">5.显示/etc/grub2.cfg文件中，至少以一个空白字符开头的且后面存非空白字符行</span><br><span class="line">grep &quot;^[ [:space: ]]∖+[∧[: space: ]]′ /etc/grub2.cfg</span><br><span class="line"></span><br><span class="line">6.找出&quot;netstat -tan&quot;命令的结果中以&apos;LISTEN&apos;后跟0、1或多个空白字符结尾的行</span><br><span class="line">netstat -tan | grep &quot;LISTEN[[:space:] ]∗$&quot;</span><br><span class="line"></span><br><span class="line">7.添加用户bash、testbash以及nologin（其shell为/sbin/nologin), 然后找出/etc/passwd文件中用户名同 shell名的行</span><br><span class="line">grep &quot;^([[:alnum:] ]∖+∖&gt;∖).∗∖1$&quot; /etc/passwd</span><br><span class="line"></span><br><span class="line">8.显示/etc/passwd文件中ID号最大用户的用户名</span><br><span class="line">sort - t:−k3−n/etc/ passwd | tail -1 |cut - d : - f1</span><br></pre></td></tr></table></figure>
+
+<h3 id="sed"><a href="#sed" class="headerlink" title="sed"></a>sed</h3><ul>
+<li><p>Stream Editor文本流编辑，sed是一个“非交互式的”面向字符流的编辑器。能同时处理多个文件多行的内容，可以 不对原文件改动，把整个文件输入到屏幕,可以把只匹配到模式的内容输入到屏幕上。还可以对原文件改动，但是不 会再屏幕上返回结果</p>
+</li>
+<li><p>格式语法</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">  sed的命令格式: sed [option] &apos;sed command&apos; filename</span><br><span class="line">  sed的脚本格式: sed [option] - f &apos;sed script&apos; filename</span><br><span class="line">  常用选项：</span><br><span class="line">  	−n ：只打印模式匹配的行</span><br><span class="line">  	-e : 直接在命令行模式上进行sed动作编辑，此为默认选项</span><br><span class="line">  	-f : 将sed的动作写在一个文件内，用-f filename 执行filename内的sed动作</span><br><span class="line">  	−r ：支持扩展表达式</span><br><span class="line">  	−i ：直接修改文件内</span><br><span class="line">  查询文本的方式</span><br><span class="line">  使用行号和行号范围</span><br><span class="line">  	x : 行号</span><br><span class="line">  	x,y ：从x行到 y 行</span><br><span class="line">  	x,y!:x 行到 y 行之外</span><br><span class="line">  	/pattern：查询包含模式的行</span><br><span class="line">  	/pattern/,/pattern/：查询包含两个模式的行</span><br><span class="line">  	/pattern/, x ：x行内查询包含模式的行</span><br><span class="line">  	x,/pattern/：x行后查询匹配模式的行</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">- 编辑命令</span><br></pre></td></tr></table></figure>
+
+<p>常用选项：<br>p : 打印匹配的行 (−n)<br>=: 显示文件行号<br>a∖ ：指定行号后添加新文本<br>i∖ : 指定行号前添加新文本<br>d：删除定位行<br>c∖ ：用新文本替换定位文本<br>w filename: 写文本到一个文件<br>r filename: 从另一个文件读文本<br>s//1 ：替换<br>替换标记:<br>g : 行内全局替换<br>p : 显示替换成功的行<br>w: 将替换成功的结果保存至指定文件<br>q : 第一个模式匹配后立即退出<br>{} ：在定位行执行的命令组，用逗号分隔<br>g：将模式2粘贴到/pattern n/</p>
+</li>
+</ul>
+<h3 id="awk"><a href="#awk" class="headerlink" title="awk"></a>awk</h3><ul>
+<li>awk是一个强大的文本分析工具，相对于 grep的查找， sed的编辑，awk在其对数据分析并生成报告时，显得尤为 强大。简单来说awk就是把文件逐行的读入，以空格为默认分隔符将每行切片，切开的部分再进行各种分析处理。</li>
+<li>官方网址: <a href="http://www.gnu.org/software/gawk/manual/gawk.html" target="_blank" rel="noopener">http://www.gnu.org/software/gawk/manual/gawk.html</a></li>
+<li>使用方法</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">awk [option] &apos;pattern + action&apos; filenames</span><br><span class="line"></span><br><span class="line">option</span><br><span class="line">−F ：指定分隔符</span><br><span class="line">−v ：指定用户定义变量</span><br><span class="line">−f ：从脚本文件读取awk命令</span><br><span class="line"></span><br><span class="line">pattern： </span><br><span class="line">模式可以是以下任意一种： </span><br><span class="line">正则表达式：使用通配符的扩展集 </span><br><span class="line">关系表达式：使用运算符进行操作，可以是字符串或数字的比较测试 </span><br><span class="line">模式匹配表达式：用运算符～（匹配）和~!不匹配 </span><br><span class="line">BEGIN 语句块， pattern语句块， END语句块</span><br><span class="line"></span><br><span class="line">action：</span><br><span class="line">	操作由一个或多个命令、函数、表达式组成，之间由换行符或分号隔开，并位于大刮号内，主要部分是: 变量 或数组赋值、输出命令、内置函数、控制流语句</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>awk常见用法</p>
+<pre><code class="shell">[root@node1 ~]# awk ‐F: &#39;{print $1}&#39; /etc/passwd 
+[root@node1 ~]# awk ‐F: &#39;$4==188 {print $1}&#39; /etc/passwd 
+[root@node1 ~]# awk ‐F: &#39;/^zhaohao/{print $1,$4}&#39; /etc/passwd 
+[root@node1 ~]# awk ‐F: ‐va=3 &#39;{print $1,$1+$a}&#39; /etc/passwd 
+[root@node1 ~]# awk ‐F: &#39;{print &quot;filename:&quot; FILENAME &quot;,linenumber:&quot; NR &quot;,columns:&quot; NF &quot;,linecontent:&quot;$0}&#39; /etc/passwd 
+[root@node1 ~]# awk ‐F: &#39;BEGIN{print&quot;‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐\n&quot;}{printf &quot;username:%‐16s\tsuserid:%‐16s\n&quot;,$1,$4}END{printf N &quot;%‐4s records\n&quot;,NR}&#39; /etc/passwd
+
+使用-F指定分隔符，-v传递变量参数，输出时有print和printf格式化输出，并且输出多列用, 号分割，并且添加 BEGIN和END字段。
+
+
+</code></pre>
+</li>
+</ul>
+<ul>
+<li>awk运算符</li>
+</ul>
+<p><img src="https://cdn.mathpix.com/cropped/2022_05_06_d3c1f22a889eba6cdd42g-3.jpg?height=151&width=612&top_left_y=832&top_left_x=101" alt="img"></p>
+<ul>
+<li>awk内置</li>
+</ul>
+<p><img src="https://cdn.mathpix.com/cropped/2022_05_06_d3c1f22a889eba6cdd42g-3.jpg?height=333&width=530&top_left_y=1085&top_left_x=99" alt="img"></p>
+<ul>
+<li>条件和循环用法</li>
+</ul>
+<p><img src="https://cdn.mathpix.com/cropped/2022_05_06_d3c1f22a889eba6cdd42g-3.jpg?height=169&width=768&top_left_y=1528&top_left_x=99" alt="img"></p>
+<ul>
+<li>数组</li>
+</ul>
+<p>数组使用的语法格式：array_name[index]=value</p>
+<p>删除数组: delete array_name[index]</p>
+<p>多维数组</p>
+<ul>
+<li><p>函数</p>
+<p><a href="https://www.runoob.com/w3cnote/awk-built-in-functions.html#b2" target="_blank" rel="noopener">https://www.runoob.com/w3cnote/awk-built-in-functions.html#b2</a></p>
+</li>
+</ul>
+
+    
+
+    
+
+    
+
+  </div>
+  <div class="article-info article-info-index">
+    
+    
+    
+
+    
+    <p class="article-more-link">
+      <a class="article-more-a" href="/2022/05/06/Linux文本三剑客/">展开全文 >></a>
+    </p>
+    
+
+    
+    <div class="clearfix"></div>
+  </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-network" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
