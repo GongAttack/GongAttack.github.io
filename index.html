@@ -229,18 +229,17 @@
 
 <ul>
 <li><p>awk常见用法</p>
-<pre><code class="shell">[root@node1 ~]# awk ‐F: &#39;{print $1}&#39; /etc/passwd 
-[root@node1 ~]# awk ‐F: &#39;$4==188 {print $1}&#39; /etc/passwd 
-[root@node1 ~]# awk ‐F: &#39;/^zhaohao/{print $1,$4}&#39; /etc/passwd 
-[root@node1 ~]# awk ‐F: ‐va=3 &#39;{print $1,$1+$a}&#39; /etc/passwd 
-[root@node1 ~]# awk ‐F: &#39;{print &quot;filename:&quot; FILENAME &quot;,linenumber:&quot; NR &quot;,columns:&quot; NF &quot;,linecontent:&quot;$0}&#39; /etc/passwd 
-[root@node1 ~]# awk ‐F: &#39;BEGIN{print&quot;‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐\n&quot;}{printf &quot;username:%‐16s\tsuserid:%‐16s\n&quot;,$1,$4}END{printf N &quot;%‐4s records\n&quot;,NR}&#39; /etc/passwd
+<pre><code>[root@node1 ~]# awk ‐F: &apos;{print $1}&apos; /etc/passwd 
+[root@node1 ~]# awk ‐F: &apos;$4==188 {print $1}&apos; /etc/passwd 
+[root@node1 ~]# awk ‐F: &apos;/^zhaohao/{print $1,$4}&apos; /etc/passwd 
+[root@node1 ~]# awk ‐F: ‐va=3 &apos;{print $1,$1+$a}&apos; /etc/passwd 
+[root@node1 ~]# awk ‐F: &apos;{print &quot;filename:&quot; FILENAME &quot;,linenumber:&quot; NR &quot;,columns:&quot; NF &quot;,linecontent:&quot;$0}&apos; /etc/passwd 
+[root@node1 ~]# awk ‐F: &apos;BEGIN{print&quot;‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐‐\n&quot;}{printf &quot;username:%‐16s\tsuserid:%‐16s\n&quot;,$1,$4}END{printf N &quot;%‐4s records\n&quot;,NR}&apos; /etc/passwd
 
 使用-F指定分隔符，-v传递变量参数，输出时有print和printf格式化输出，并且输出多列用, 号分割，并且添加 BEGIN和END字段。
 
 
-</code></pre>
-</li>
+</code></pre></li>
 </ul>
 <ul>
 <li>awk运算符</li>
@@ -1367,7 +1366,7 @@ windows^M$</code></pre><p>less more head tail tailf</p>
 </li>
 </ul>
 <h2 id="初识shell"><a href="#初识shell" class="headerlink" title="初识shell"></a>初识shell</h2><p>shell是系统的<strong>用户界面</strong> ,提供了用户与内核进行交互操作的一种接口。它接收用户输入的命令并把它送入内核去执行。实际上shell是一个<strong>命令解释器</strong>，它解释用户输入的命令并且把用户的意图传达给内核。（可以理解为用户与内核之间的翻译官角色）</p>
-<p><img src="img/shell.png" alt="image-shell"></p>
+<p><img src="https://thumbnail0.baidupcs.com/thumbnail/a162e22bag3a5647d880039da36d4cf1?fid=3207290439-250528-661415492797194&time=1651845600&rt=sh&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-BX5eJET2em0gk%2FkujL2tjDJlGeg%3D&expires=8h&chkv=0&chkbd=0&chkpc=&dp-logid=8685615686540104403&dp-callid=0&file_type=0&size=c710_u400&quality=100&vuk=-&ft=video" alt="image-shell"></p>
 <p>我们可以使用shell实现对Linux系统单的大部分管理，例如：</p>
 <ol>
 <li>文件管理</li>
